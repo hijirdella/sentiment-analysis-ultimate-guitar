@@ -131,7 +131,8 @@ else:
 
                 for bar in bars:
                     height = bar.get_height()
-                    ax_bar.text(bar.get_x() + bar.get_width() / 2, height + 0.5, f'{int(height)}',
+                    formatted = format(int(height), ',').replace(',', '.')
+                    ax_bar.text(bar.get_x() + bar.get_width() / 2, height + 0.5, formatted,
                                 ha='center', va='bottom', fontsize=10)
 
                 ax_bar.set_ylabel("Jumlah")
@@ -146,7 +147,8 @@ else:
 
                 def autopct_format(pct, allvals):
                     absolute = int(round(pct / 100. * sum(allvals)))
-                    return f"{pct:.1f}%\n({absolute})"
+                    formatted = format(absolute, ',').replace(',', '.')
+                    return f"{pct:.1f}%\n({formatted})"
 
                 fig_pie, ax_pie = plt.subplots()
                 ax_pie.pie(
